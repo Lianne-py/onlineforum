@@ -1,0 +1,39 @@
+@model ForumApp.Models.CreatePostViewModel
+@{
+    ViewData["Title"] = "New post";
+}
+
+<div class="max-w-xl">
+    <h1 class="text-2xl font-semibold text-primary mb-6">New topic</h1>
+    <form asp-action="Create" method="post" enctype="multipart/form-data" class="space-y-4">
+        <div>
+            <label for="Title" class="block text-sm font-medium text-primary mb-1">Title</label>
+            <input asp-for="Title" class="w-full rounded-lg border border-border bg-white px-3 py-2 text-primary focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent" placeholder="Topic title" maxlength="200" />
+            <span asp-validation-for="Title" class="text-sm text-red-500"></span>
+        </div>
+        <div>
+            <label for="Content" class="block text-sm font-medium text-primary mb-1">Content</label>
+            <textarea asp-for="Content" rows="5" class="w-full rounded-lg border border-border bg-white px-3 py-2 text-primary focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent resize-y" placeholder="Write your post…"></textarea>
+            <span asp-validation-for="Content" class="text-sm text-red-500"></span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+                <label for="Image" class="block text-sm font-medium text-primary mb-1">Image (optional)</label>
+                <input type="file" asp-for="Image" accept=".jpg,.jpeg,.png,.gif,.webp" class="w-full text-sm text-muted file:mr-3 file:rounded-lg file:border-0 file:bg-surface file:px-3 file:py-2 file:text-primary" />
+            </div>
+            <div>
+                <label for="Video" class="block text-sm font-medium text-primary mb-1">Video (optional)</label>
+                <input type="file" asp-for="Video" accept=".mp4,.webm,.mov" class="w-full text-sm text-muted file:mr-3 file:rounded-lg file:border-0 file:bg-surface file:px-3 file:py-2 file:text-primary" />
+            </div>
+        </div>
+        <div class="flex gap-3 pt-2">
+            <button type="submit" class="rounded-lg bg-primary text-white px-4 py-2 text-sm font-medium hover:opacity-90">Post</button>
+            <a asp-controller="Home" asp-action="Index" class="rounded-lg border border-border px-4 py-2 text-sm font-medium text-muted hover:bg-surface">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
